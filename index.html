@@ -317,6 +317,118 @@ nav ul li a.active {
     margin-top: 1rem;
     font-size: 1.1rem;
 }</style>
+<script>document.addEventListener("DOMContentLoaded", function() {
+
+    // === 1. Active Nav Link on Scroll ===
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('header nav ul li a');
+
+    function updateActiveNav() {
+        let currentSectionId = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // === 2. Typed.js for Typing Animation ===
+    var typed = new Typed('.typing-text', {
+        strings: ["Web Developer", "Frontend Designer", "UI/UX Enthusiast", "Student"],
+        typeSpeed: 100,
+        backSpeed: 60,
+        loop: true
+    });
+
+    // === 3. Animate Skills on Scroll ===
+    const skillsSection = document.querySelector('.skills');
+    let skillsAnimated = false; // Flag to ensure animation only runs once
+
+    function animateSkills() {
+        if (skillsAnimated) return; // Don't run if already animated
+
+        // Animate Linear Skill Bars
+        const skillLevels = document.querySelectorAll('.skill-level');
+        skillLevels.forEach(skill => {
+            const level = skill.getAttribute('data-level');
+            skill.style.width = level;
+        });
+
+        // Animate Circular Skill Bars
+        const radialCharts = document.querySelectorAll('.radial-chart');
+        radialCharts.forEach(chart => {
+            const percent = parseInt(chart.getAttribute('data-percent'));
+            const percentText = chart.querySelector('.percent-text');
+            const chartInner = chart.querySelector('.chart-inner');
+            
+            let currentPercent = 0;
+            const glowColor = 'var(--main-color)';
+            const bgColor = '#555'; // The "empty" part of the circle
+
+            let animationInterval = setInterval(() => {
+                if (currentPercent >= percent) {
+                    clearInterval(animationInterval);
+                } else {
+                    currentPercent++;
+                    percentText.textContent = `${currentPercent}%`;
+                    // This uses conic-gradient to create the circle animation
+                    chartInner.style.background = `conic-gradient(
+                        ${glowColor} ${currentPercent * 3.6}deg, 
+                        ${bgColor} ${currentPercent * 3.6}deg 360deg
+                    )`;
+                }
+            }, 20); // Adjust speed of animation here
+        });
+
+        skillsAnimated = true; // Set flag to true
+    }
+
+    // === Intersection Observer to trigger animations ===
+    const observerOptions = {
+        root: null,
+        threshold: 0.3 // Trigger when 30% of the section is visible
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Update nav link
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${entry.target.id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Trigger skill animation
+            if (entry.target.id === 'skills' && entry.isIntersecting) {
+                animateSkills();
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections for nav highlighting and skill animation
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Fallback for simple scroll (also updates nav)
+    window.onscroll = () => {
+        updateActiveNav();
+    };
+
+});</script>
     <header>
         <nav class="container">
             <a href="#home" class="logo">Portfolio.</a>
@@ -338,7 +450,10 @@ nav ul li a.active {
                     <h3>Hello, It's Me</h3>
                     <h1>Raj Verma</h1>
                     <h3>And I'm a fronted developer... <span class="typing-text"></span></h3>
-                    <p>A motivated and detail-oriented engineering student with a focus on continuous learning and innovation. Skilled in teamwork, communication, and adapting to new challenges. I aim to build a strong career by applying my knowledge to practical and meaningful projects..</p>
+                    <p>Hi, I’m Raj Verma, a passionate second-year engineering student with a keen interest in UI/UX design, web development, and Google Developer technologies.
+
+                        I enjoy turning creative ideas into user-friendly digital experiences and continuously learning through hands-on projects and Google Cloud Skills Boost labs.
+                    </p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -357,9 +472,9 @@ nav ul li a.active {
                 <h2>About <span>Me</span></h2>
                 <h4>Full Stack Developer!</h4>
                 <p>
-                    I am a skilled web designer with over 3 years of experience in the industry. My passion
-                    lies in creating captivating website designs and implementing them through frontend development.
-                    I take pride in staying up-to-date with current design trends and leveraging my creativity...
+                    Engineering student with a strong interest in UI/UX design, web development, 
+                    and Google Developer technologies. Actively engaged in GDG on Campus events and Google Cloud Skills Boost labs to enhance technical and 
+                    creative skills. Focused on building user-centered and impactful digital experiences.
                 </p>
                 <a href="#" class="btn">More About Me</a>
             </div>
@@ -370,22 +485,23 @@ nav ul li a.active {
                 <h2 class="section-title">My <span>Services</span></h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <i class="fas fa-code"></i>
-                        <h3></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, nemo.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>Canva</h3>
+                        <p>As a Canva developer, I design and customize creative content that aligns with modern branding and UI principles.</p>
+                        <a href="https://www.canva.com/design/DAGu_ZCK-iU/7evjYFDBoPAxDV-X9cgsTg/edit?utm_content=DAGu_ZCK-iU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="btn">Learn More</a>
                     </div>
                     <div class="service-card">
                         <i class="fas fa-crop-alt"></i>
-                        <h3>Web Design</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, nemo.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <h3>Internship</h3>
+                        <p>Intern at Softpro India </p>
+                        <a href="https://www.linkedin.com/posts/raj-verma-3310a4324_python-programming-learning-activity-7372284673726509056-VSG0?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAFHiBtUBrZN64qZ8uhWfsjjnXuFAj7ljoZs&utm_campaign=copy_link" class="btn">Link</Link></a>
                     </div>
                     <div class="service-card">
-                        <i class="fab fa-apple"></i>
-                        <h3>App Design</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, nemo.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <i class="fab fa-object-group"></i>
+                        <h3>Hackathon</h3>
+                        <p>Participated in national-level hackathons, including IIT Jodhpur and 
+                            NIT Agartala, showcasing innovative problem-solving and teamwork skills.</p>
+                        <a href="https://www.linkedin.com/posts/raj-verma-3310a4324_arjuna2abr0-innovation-teamwork-activity-7391500017347371008-l5Fw?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAFHiBtUBrZN64qZ8uhWfsjjnXuFAj7ljoZs&utm_campaign=copy_link" class="btn">Link</a>
                     </div>
                 </div>
             </div>
@@ -406,25 +522,25 @@ nav ul li a.active {
                         <div class="skill-item">
                             <p>CSS</p>
                             <div class="skill-bar">
-                                <div class="skill-level" data-level="80%"></div>
+                                <div class="skill-level" data-level="70%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <p>JavaScript</p>
                             <div class="skill-bar">
-                                <div class="skill-level" data-level="85%"></div>
+                                <div class="skill-level" data-level="75%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <p>Python</p>
+                            <p>Java </p>
                             <div class="skill-bar">
                                 <div class="skill-level" data-level="50%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <p>React</p>
+                            <p>Canva </p>
                             <div class="skill-bar">
-                                <div class="skill-level" data-level="75%"></div>
+                                <div class="skill-level" data-level="85%"></div>
                             </div>
                         </div>
                     </div>
@@ -438,9 +554,9 @@ nav ul li a.active {
                                 </div>
                                 <p>Creativity</p>
                             </div>
-                            <div class="radial-chart" data-percent="65">
+                            <div class="radial-chart" data-percent="75">
                                 <div class="chart-inner">
-                                    <span class="percent-text">65%</span>
+                                    <span class="percent-text">75%</span>
                                 </div>
                                 <p>Communication</p>
                             </div>
