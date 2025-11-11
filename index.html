@@ -727,6 +727,111 @@ nav ul li a.active {
         left: -11px; /* Adjust dot position */
     }
 }</style>
+                                <section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact <span>Me</span></h2>
+
+        <form action="#" method="POST">
+            <div class="form-group-grid">
+                <div class="form-group">
+                    <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" name="subject" id="subject" placeholder="Enter Your Subject" required>
+            </div>
+
+            <div class="form-group">
+                <textarea name="message" id="message" rows="6" placeholder="Enter Your Message" required></textarea>
+            </div>
+
+            <div class-="form-group">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+<style>/* === Contact Section === */
+.contact {
+    /* You can use var(--bg-color) or var(--second-bg-color) */
+    background: var(--bg-color); 
+}
+
+.contact .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact form {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Grid for Name and Email */
+.form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Style for all inputs and textareas */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--second-bg-color);
+    border: 2px solid var(--main-color);
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+/* Remove default textarea resize */
+.form-group textarea {
+    resize: none;
+}
+
+/* Add a glow on focus */
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: var(--glow-shadow);
+}
+
+/* Placeholder text color */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* Style for the submit button */
+.contact .btn {
+    /* The .btn class from your previous CSS 
+       is already styled, but we can add
+       a cursor and ensure it's full width if we want */
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+/* Responsive: Stack Name and Email on mobile */
+@media (max-width: 768px) {
+    .form-group-grid {
+        grid-template-columns: 1fr;
+        gap: 0; /* Gap is already handled by .form-group margin */
+    }
+}</style>
                             </div>
                         </div>
                     </div>
