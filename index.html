@@ -449,6 +449,19 @@ nav ul li a.active {
                 <div class="home-text">
                     <h3>Hello, It's Me</h3>
                     <h1>Raj Verma</h1>
+                    <style>h1 {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+</style>
                     <h3>And I'm a fronted developer... <span class="typing-text"></span></h3>
                     <p>Hi, I’m Raj Verma, a passionate second-year engineering student with a keen interest in UI/UX design, web development, and Google Developer technologies.
 
@@ -463,6 +476,16 @@ nav ul li a.active {
                 </div>
                 <div class="home-img">
                     <img src=IMG-20251109-WA0000.jpg>
+                    <style>.profile-image {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+</style>
                 </div>
             </div>
         </section>
