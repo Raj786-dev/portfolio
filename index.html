@@ -594,6 +594,139 @@ nav ul li a.active {
                                     <span class="percent-text">85%</span>
                                 </div>
                                 <p>Teamwork</p>
+                                <section class="education" id="education">
+    <div class="container">
+        <h2 class="section-title">My <span>Education</span></h2>
+
+        <div class="education-timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024 - 2028</div>
+                <div class="timeline-content">
+                    <h3>Bachelor of Technology (B.Tech)</h3>
+                    <h4>[Rajkiya Engineering College Banda]</h4>
+                    <p>
+                        Specialized in Computer Science & Engineering. Focused on web development, 
+                        data structures, and algorithms.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024</div>
+                <div class="timeline-content">
+                    <h3>Intermediate</h3>
+                    <h4>[R.S. Education Centre Inter College ]<span>[Kanpur]</span> </h4>
+                    <p>
+                        Completed my Intermediate  with a focus on Physics, Chemistry, and Mathematics.
+                    </p>
+                </div>
+            </div>
+
+            </div>
+    </div>
+</section>
+<style>/* === Education Section === */
+.education {
+    background: var(--second-bg-color); /* Matches 'about' section */
+}
+
+.education .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.education-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 2rem; /* Space for the timeline line */
+}
+
+/* The vertical timeline bar */
+.education-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    background: var(--bg-color); /* Darker line */
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 2rem; /* Space from the timeline line */
+}
+
+/* The glowing dot on the timeline */
+.timeline-dot {
+    position: absolute;
+    left: -9px; /* (Dot width / 2) - (Line width / 2) ... (22/2) - (4/2) = 9 */
+    top: 8px;
+    width: 22px;
+    height: 22px;
+    background: var(--main-color);
+    border: 4px solid var(--second-bg-color);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--main-color);
+    z-index: 2;
+}
+
+.timeline-date {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+    background: var(--bg-color); /* Dark card background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--main-color);
+    transition: box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    box-shadow: var(--glow-shadow);
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h4 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.timeline-content p {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Responsive adjustment for timeline */
+@media (max-width: 768px) {
+    .education-timeline {
+        padding-left: 1.5rem; /* Smaller space on mobile */
+    }
+    .timeline-item {
+        padding-left: 1.5rem; /* Smaller space on mobile */
+    }
+    .timeline-dot {
+        left: -11px; /* Adjust dot position */
+    }
+}</style>
                             </div>
                         </div>
                     </div>
